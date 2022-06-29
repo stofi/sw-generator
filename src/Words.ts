@@ -1,3 +1,13 @@
+const genre = [
+    'comedy',
+    'drama',
+    'sitcom',
+    'thriller',
+    'romance',
+    'horror',
+    'mystery',
+] as const
+
 const adjectives = [
     'abandoned',
     'retired',
@@ -8,43 +18,41 @@ const adjectives = [
     'exhausted',
     'wasted',
     'depleted',
-    'frayed',
     'drained',
     'worn',
-    'used',
     'burnt out',
     'tapped out',
     'wiped out',
     'past their prime',
     'run down',
     'played out',
-    'expended',
+    'depressed',
+    'widowed',
 ] as const
 
 const actions = [
-    'saves',
-    'rescues',
-    'takes care of',
-    'raises',
-    'nurses',
-    'feeds',
-    'protects',
-    'helps',
-    'shelters',
-    'guides',
-    'nurtures',
-    'fosters',
-    'adopts',
+    'saving',
+    'rescuing',
+    'taking care of',
+    'raising',
+    'nursing',
+    'feeding',
+    'protecting',
+    'helping',
+    'sheltering',
+    'guiding',
+    'nurturing',
+    'fostering',
+    'adopting',
 ] as const
 
 const ageGroups = [
     'baby',
     'toddler',
     'preschooler',
-    'tween',
     'teenager',
     'twenty-something',
     'millenial',
 ] as const
 
-export { adjectives, actions, ageGroups }
+export { adjectives, actions, ageGroups, genre }

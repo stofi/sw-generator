@@ -1,7 +1,7 @@
 import Swapi from './SwapiClient'
 import type { Person } from './SwapiClient'
 import { getPrediction } from './OpenAI'
-import { actions, adjectives, ageGroups } from './Words'
+import { actions, adjectives, ageGroups, genre } from './Words'
 
 export default class App {
     client = new Swapi()
@@ -31,6 +31,9 @@ export default class App {
     getRandomAdjective() {
         return adjectives[Math.floor(Math.random() * adjectives.length)]
     }
+    getRandomGenre() {
+        return genre[Math.floor(Math.random() * genre.length)]
+    }
 
     getRandomAgeGroup() {
         return ageGroups[Math.floor(Math.random() * ageGroups.length)]
@@ -42,7 +45,8 @@ export default class App {
         const action = this.getRandomAction()
         const adjective = this.getRandomAdjective()
         const ageGroup = this.getRandomAgeGroup()
-        const story = `${adjective} ${person.name} ${action} ${ageGroup} ${otherPerson.name}.`
+        const intro = this.getRandomGenre()
+        const story = `${adjective} ${person.name} ${action} ${ageGroup} ${otherPerson.name}. Genre: ${intro}`
         // make first letter uppercase
         return {
             story: story.charAt(0).toUpperCase() + story.slice(1),
@@ -51,12 +55,20 @@ export default class App {
             action,
             ageGroup,
             otherPerson: otherPerson.name,
+            intro,
         }
     }
 
     async generateStoryWithOpenAI() {
-        const { story, person, otherPerson, action, adjective, ageGroup } =
-            this.generateStory()
+        const {
+            story,
+            person,
+            otherPerson,
+            action,
+            adjective,
+            ageGroup,
+            intro,
+        } = this.generateStory()
         const prediction = await getPrediction(story)
         return {
             prediction:
@@ -68,7 +80,7 @@ export default class App {
             person,
             action,
             ageGroup,
-            otherPerson,
+            intro,
         }
     }
 }

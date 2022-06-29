@@ -11,10 +11,10 @@ export const getPrediction = async (text: string) => {
     const response = await openai
         .createCompletion({
             model: 'text-davinci-002',
-            prompt: `Expand this description of a Star Wars TV show to up to 280 characters: ${text}`,
+            prompt: `Write a short synopis for the plot of this new Star Wars TV series to up to 220 characters: ${text}`,
             temperature: 0.9,
-            max_tokens: 220,
-            frequency_penalty: -0.1,
+            max_tokens: 200,
+            frequency_penalty: 1,
         })
         .then(({ data }) => data)
 
